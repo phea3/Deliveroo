@@ -6,15 +6,27 @@ import {
   TouchableOpacity,
   ScrollView,
 } from "react-native";
+import { StatusBar } from 'expo-status-bar';
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import ActionRow from "../components/ActionRow";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../App";
+import { useNavigation } from "@react-navigation/native";
+
+export type NavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  "Home"
+>;
 
 const HomeScreen = () => {
+  const navigation = useNavigation<NavigationProp>();
   return (
     <SafeAreaView className="flex-1 bg-gray-100 relative">
       <ScrollView>
-        <TouchableOpacity className="absolute z-50 top-5 right-10 items-center">
+        <TouchableOpacity
+          onPress={() => navigation.navigate("Paywall")}
+          className="absolute z-50 top-5 right-10 items-center">
           <Ionicons name="person-circle" size={24} color="#E5962D" />
           <Text className="text-center text-[#E5962D]">PRO/UPGRADE</Text>
         </TouchableOpacity>
@@ -68,6 +80,7 @@ const HomeScreen = () => {
           />
         </View>
       </ScrollView>
+      <StatusBar style="dark" />
     </SafeAreaView>
   );
 };

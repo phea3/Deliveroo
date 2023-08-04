@@ -2,6 +2,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import HomeScreen from "./screens/HomeScreen";
 import DemoScreen from "./screens/DemoScreen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Paywall from "./screens/Paywall";
 
 export type RootStackParamList = {
   Home: undefined;
@@ -19,7 +20,17 @@ export default function App() {
           name="Home"
           component={HomeScreen}
         />
-        <Stack.Screen name="Demo" component={DemoScreen} />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Demo"
+          component={DemoScreen} />
+        <Stack.Screen
+          options={{
+            headerShown: false,
+            presentation: 'modal'
+          }}
+          name="Paywall"
+          component={Paywall} />
       </Stack.Navigator>
     </NavigationContainer>
   );
